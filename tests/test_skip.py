@@ -13,6 +13,7 @@ def browser_parameters(request):
     config.window_width = request.param[0]
     config.window_height = request.param[1]
     config.base_url = 'https://github.com/'
+    yield
     browser.quit()
 
 

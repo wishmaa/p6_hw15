@@ -10,12 +10,13 @@ desktop = pytest.mark.parametrize('browser_parameters', [(1280, 960), (1920, 128
 mobile = pytest.mark.parametrize('browser_parameters', [(820, 1180), (414, 896)], indirect=True)
 
 
-@pytest.fixture()
+@pytest.fixture(params=[(1280, 960), (1920, 1280), (820, 1180), (414, 896)])
 def browser_parameters(request):
     config.timeout = 5
     config.window_width = request.param[0]
     config.window_height = request.param[1]
     config.base_url = 'https://github.com/'
+    yield
     browser.quit()
 
 
